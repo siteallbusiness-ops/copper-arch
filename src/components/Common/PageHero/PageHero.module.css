@@ -1,0 +1,32 @@
+.pageHero {
+  padding: calc(var(--header-height) + 2.5rem + env(safe-area-inset-top, 0px)) 0 48px;
+  background: linear-gradient(165deg, var(--void), var(--forest));
+  color: rgba(243, 237, 227, 0.85);
+}
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0 0 14px;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  color: var(--cream);
+  margin: 0 0 12px;
+}
+
+.description {
+  margin: 0;
+  max-width: 52ch;
+}
+
+@media (max-width: 576px) {
+  .pageHero {
+    padding: calc(var(--header-height) + 1.5rem + env(safe-area-inset-top, 0px)) 0 36px;
+  }
+}

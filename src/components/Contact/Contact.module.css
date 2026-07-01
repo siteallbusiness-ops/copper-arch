@@ -1,0 +1,603 @@
+/* ═══════════════════════════════════════════════════════════
+   Visit page — salon arrival editorial
+   ═══════════════════════════════════════════════════════════ */
+
+.pageBody {
+  background: var(--cream);
+  color: var(--ink-soft);
+}
+
+/* ── Arrival ribbon ────────────────────────────────────────── */
+
+.arrivalRibbon {
+  padding: clamp(1.5rem, 3vw, 2rem) 0;
+  background: linear-gradient(180deg, var(--cream-muted) 0%, var(--cream) 100%);
+  border-bottom: 1px solid var(--line-light);
+}
+
+.ribbonInner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1rem, 3vw, 2rem);
+  padding: clamp(1rem, 2.5vw, 1.35rem) clamp(1.25rem, 3vw, 2rem);
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(15, 18, 16, 0.06);
+  box-shadow: 0 4px 20px rgba(15, 18, 16, 0.04);
+}
+
+.ribbonItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  text-align: center;
+}
+
+.ribbonLabel {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mist);
+}
+
+.ribbonValue {
+  font-family: var(--font-serif);
+  font-size: clamp(0.9375rem, 1.4vw, 1.0625rem);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.ribbonLink {
+  font-size: clamp(0.875rem, 1.3vw, 0.9375rem);
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.ribbonLink:hover {
+  color: var(--gold-deep);
+  text-decoration: none;
+}
+
+.ribbonDivider {
+  width: 1px;
+  height: 2rem;
+  background: linear-gradient(180deg, transparent, var(--line-light), transparent);
+  flex-shrink: 0;
+}
+
+/* ── Main spread ───────────────────────────────────────────── */
+
+.salonSpread {
+  position: relative;
+  padding: clamp(3.5rem, 7vw, 5.5rem) 0;
+  overflow: hidden;
+}
+
+.spreadGlow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 40% at 15% 50%, rgba(201, 168, 76, 0.06), transparent 60%),
+    radial-gradient(ellipse 40% 35% at 90% 20%, rgba(29, 56, 48, 0.04), transparent 55%);
+  pointer-events: none;
+}
+
+.spreadGrid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(2rem, 5vw, 3.5rem);
+  align-items: start;
+}
+
+/* Visual — single hero image */
+
+.spreadVisual {
+  width: 100%;
+  max-width: 480px;
+}
+
+.visualPrimary {
+  margin: 0;
+  width: 100%;
+}
+
+.visualFrame {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow:
+    0 28px 64px rgba(15, 18, 16, 0.14),
+    0 0 0 1px rgba(201, 168, 76, 0.1);
+  transition: box-shadow var(--transition);
+}
+
+.spreadVisual:hover .visualFrame {
+  box-shadow:
+    0 32px 72px rgba(15, 18, 16, 0.18),
+    0 0 0 1px rgba(201, 168, 76, 0.2);
+}
+
+.frameCorner {
+  position: absolute;
+  width: 1.25rem;
+  height: 1.25rem;
+  z-index: 2;
+  pointer-events: none;
+  border-color: var(--gold);
+  border-style: solid;
+  opacity: 0.7;
+  transition: opacity var(--transition-fast);
+}
+
+.visualFrame:hover .frameCorner {
+  opacity: 1;
+}
+
+.frameCorner[data-pos="tl"] {
+  top: 0.75rem;
+  left: 0.75rem;
+  border-width: 2px 0 0 2px;
+}
+
+.frameCorner[data-pos="tr"] {
+  top: 0.75rem;
+  right: 0.75rem;
+  border-width: 2px 2px 0 0;
+}
+
+.frameCorner[data-pos="bl"] {
+  bottom: 0.75rem;
+  left: 0.75rem;
+  border-width: 0 0 2px 2px;
+}
+
+.frameCorner[data-pos="br"] {
+  bottom: 0.75rem;
+  right: 0.75rem;
+  border-width: 0 2px 2px 0;
+}
+
+.visualPrimaryImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.85s var(--ease-out);
+}
+
+.spreadVisual:hover .visualPrimaryImage {
+  transform: scale(1.03);
+}
+
+.visualCaption {
+  margin: 0.75rem 0 0;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mist);
+}
+
+/* Details column */
+
+.spreadDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-top: clamp(0rem, 2vw, 1.5rem);
+}
+
+.spreadKicker {
+  margin: 0 0 0.75rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mist);
+}
+
+.spreadKicker::before {
+  content: "";
+  display: inline-block;
+  width: 1.25rem;
+  height: 1px;
+  background: var(--gold);
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+.spreadTitle {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.65rem, 3vw, 2.25rem);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  max-width: 16em;
+  text-wrap: balance;
+}
+
+/* Hours ticket */
+
+.hoursTicket {
+  position: relative;
+  padding: clamp(1.5rem, 3vw, 2rem) clamp(1.5rem, 3vw, 2rem) clamp(1.5rem, 3vw, 2rem) clamp(2rem, 4vw, 2.5rem);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(145deg, var(--forest) 0%, var(--mist) 100%);
+  color: var(--cream);
+  box-shadow: var(--card-shadow-dark);
+  overflow: hidden;
+}
+
+.hoursTicket::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 42%, rgba(255, 255, 255, 0.04) 50%, transparent 58%);
+  pointer-events: none;
+}
+
+.ticketPerforation {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0.65rem;
+  background:
+  repeating-linear-gradient(
+    180deg,
+    transparent 0,
+    transparent 4px,
+    rgba(243, 237, 227, 0.15) 4px,
+    rgba(243, 237, 227, 0.15) 8px
+  );
+  border-right: 1px dashed rgba(243, 237, 227, 0.2);
+}
+
+.ticketHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.875rem;
+  border-bottom: 1px solid rgba(243, 237, 227, 0.12);
+}
+
+.ticketBrand {
+  font-family: var(--font-serif);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--gold-soft);
+  letter-spacing: 0.02em;
+}
+
+.ticketStub {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(243, 237, 227, 0.55);
+}
+
+.ticketTitle {
+  margin: 0 0 1rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-weight: 600;
+  color: var(--cream);
+}
+
+.hoursList {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.hoursRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.625rem 0;
+  border-bottom: 1px solid rgba(243, 237, 227, 0.1);
+}
+
+.hoursRow:last-of-type {
+  border-bottom: none;
+}
+
+.hoursRow dt {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: rgba(243, 237, 227, 0.9);
+}
+
+.hoursRow dd {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--gold-soft);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.ticketNote {
+  margin: 1rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(243, 237, 227, 0.1);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: rgba(243, 237, 227, 0.65);
+}
+
+/* Access panel */
+
+.accessPanel {
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(15, 18, 16, 0.06);
+  box-shadow: 0 4px 20px rgba(15, 18, 16, 0.04);
+}
+
+.accessTitle {
+  margin: 0 0 1rem;
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.accessList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.accessList li {
+  position: relative;
+  padding-left: 1.125rem;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+.accessList li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 0 2px rgba(201, 168, 76, 0.2);
+}
+
+/* ── Quarter note ────────────────────────────────────────── */
+
+.quarterNote {
+  padding: clamp(3rem, 6vw, 4.5rem) 0;
+  background: linear-gradient(180deg, var(--cream) 0%, var(--cream-muted) 50%, var(--cream) 100%);
+  border-top: 1px solid var(--line-light);
+}
+
+.quarterGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.quarterPoster {
+  display: flex;
+  justify-content: center;
+}
+
+.posterFrame {
+  position: relative;
+  width: min(100%, 280px);
+  padding: 0.75rem;
+  border-radius: var(--radius-lg);
+  background: var(--cream);
+  box-shadow:
+    0 20px 48px rgba(15, 18, 16, 0.12),
+    inset 0 0 0 1px rgba(15, 18, 16, 0.06);
+  transform: rotate(-2deg);
+  transition: transform var(--transition);
+}
+
+.posterFrame:hover {
+  transform: rotate(0deg) translateY(-4px);
+}
+
+.posterImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: calc(var(--radius-lg) - 4px);
+}
+
+.quarterKicker {
+  margin: 0 0 0.75rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mist);
+}
+
+.quarterTitle {
+  margin: 0 0 1rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 2.8vw, 2rem);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.quarterText {
+  margin: 0;
+  font-size: clamp(1rem, 1.4vw, 1.0625rem);
+  line-height: 1.72;
+  max-width: 42ch;
+  color: var(--ink-soft);
+}
+
+/* ── Salon glimpses ──────────────────────────────────────── */
+
+.glimpses {
+  padding: clamp(3rem, 6vw, 4.5rem) 0 clamp(4rem, 8vw, 6rem);
+  background: var(--forest);
+  color: var(--cream);
+}
+
+.glimpsesHeader {
+  text-align: center;
+  margin-bottom: clamp(2rem, 4vw, 2.75rem);
+}
+
+.glimpsesKicker {
+  margin: 0 0 0.5rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+}
+
+.glimpsesLead {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.125rem, 2vw, 1.375rem);
+  font-style: italic;
+  color: rgba(243, 237, 227, 0.75);
+}
+
+.glimpseTrack {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2.5vw, 1.5rem);
+}
+
+.glimpseCard {
+  min-width: 0;
+}
+
+.glimpseFigure {
+  margin: 0;
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+}
+
+.glimpseImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.75s var(--ease-out);
+}
+
+.glimpseFigure:hover .glimpseImage {
+  transform: scale(1.05);
+}
+
+.glimpseCaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 2.5rem 1rem 1rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cream);
+  background: linear-gradient(180deg, transparent, rgba(6, 12, 10, 0.75));
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+
+@media (max-width: 992px) {
+  .spreadGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .spreadVisual {
+    max-width: 520px;
+    margin-inline: auto;
+  }
+
+  .quarterGrid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .quarterText {
+    margin-inline: auto;
+  }
+
+  .glimpseTrack {
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem;
+  }
+
+  .glimpseCard {
+    scroll-snap-align: start;
+  }
+}
+
+@media (max-width: 768px) {
+  .ribbonInner {
+    flex-direction: column;
+    border-radius: var(--radius-xl);
+  }
+
+  .ribbonDivider {
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--line-light), transparent);
+  }
+
+  .glimpseTrack {
+    grid-template-columns: repeat(3, minmax(72vw, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .salonSpread {
+    padding: 2.5rem 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spreadVisual:hover .visualPrimaryImage,
+  .glimpseFigure:hover .glimpseImage,
+  .posterFrame:hover {
+    transform: none;
+  }
+}

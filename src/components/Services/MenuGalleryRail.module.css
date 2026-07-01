@@ -1,0 +1,370 @@
+/* ═══════════════════════════════════════════════════════════
+   Board gallery filmstrip — scroll rail with hover cards
+   ═══════════════════════════════════════════════════════════ */
+
+.gallerySection {
+  position: relative;
+  margin-top: clamp(3rem, 6vw, 4.5rem);
+  padding: clamp(2.5rem, 5vw, 3.5rem) 0 clamp(1rem, 3vw, 2rem);
+  overflow: hidden;
+}
+
+.galleryAmbient {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 60% at 0% 50%, rgba(201, 168, 76, 0.07), transparent 55%),
+    radial-gradient(ellipse 40% 50% at 100% 30%, rgba(29, 56, 48, 0.05), transparent 50%);
+  pointer-events: none;
+}
+
+.galleryHeader {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 36rem;
+  margin: 0 auto clamp(2rem, 4vw, 2.75rem);
+}
+
+.galleryKicker {
+  margin: 0 0 0.5rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--mist);
+}
+
+.galleryTitle {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--ink);
+}
+
+.galleryLead {
+  margin: 0;
+  font-size: clamp(0.9375rem, 1.4vw, 1rem);
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+
+/* ── Rail shell ──────────────────────────────────────────── */
+
+.railShell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.railViewport {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.railFadeLeft,
+.railFadeRight {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(2rem, 5vw, 4rem);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.railFadeLeft {
+  left: 0;
+  background: linear-gradient(90deg, var(--cream) 0%, transparent 100%);
+}
+
+.railFadeRight {
+  right: 0;
+  background: linear-gradient(270deg, var(--cream) 0%, transparent 100%);
+}
+
+.railTrack {
+  display: flex;
+  gap: clamp(0.875rem, 2vw, 1.25rem);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: clamp(1rem, 4vw, 1.25rem);
+  padding: 0.5rem clamp(0.25rem, 2vw, 0.5rem) 1.25rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.railTrack::-webkit-scrollbar {
+  display: none;
+}
+
+.railTrack:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: 4px;
+  border-radius: var(--radius);
+}
+
+/* ── Navigation arrows ───────────────────────────────────── */
+
+.railNav {
+  flex-shrink: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--ink);
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(15, 18, 16, 0.08);
+  transition:
+    transform var(--transition-fast),
+    background var(--transition-fast),
+    opacity var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.railNav:hover:not(:disabled) {
+  transform: scale(1.06);
+  background: #fff;
+  border-color: var(--gold);
+}
+
+.railNav:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.railNavHidden {
+  opacity: 0.35;
+}
+
+.railNav:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* ── Board cards ─────────────────────────────────────────── */
+
+.boardCard {
+  flex: 0 0 auto;
+  width: clamp(220px, 28vw, 280px);
+  margin: 0;
+  scroll-snap-align: start;
+}
+
+.cardFrame {
+  position: relative;
+  height: 100%;
+  border-radius: var(--radius-lg);
+  background: #fff;
+  border: 1px solid rgba(15, 18, 16, 0.06);
+  box-shadow: 0 8px 28px rgba(15, 18, 16, 0.07);
+  overflow: hidden;
+  transition:
+    transform 0.45s var(--ease-spring),
+    box-shadow 0.45s var(--ease-out),
+    border-color 0.35s var(--ease-out);
+}
+
+.boardCard:hover .cardFrame,
+.boardCard:focus-within .cardFrame {
+  transform: translateY(-6px);
+  border-color: rgba(201, 168, 76, 0.35);
+  box-shadow:
+    0 20px 48px rgba(15, 18, 16, 0.12),
+    0 0 0 1px rgba(201, 168, 76, 0.12);
+}
+
+.cardIndex {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 3;
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--cream);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  opacity: 0.9;
+  transition: transform 0.4s var(--ease-out);
+}
+
+.boardCard:hover .cardIndex {
+  transform: scale(1.1);
+}
+
+.cardCategory {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 3;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.5rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--void);
+  background: linear-gradient(160deg, #ead9a0, var(--gold));
+  border-radius: var(--radius-full);
+  box-shadow: 0 2px 8px rgba(201, 168, 76, 0.35);
+  transition: transform 0.4s var(--ease-spring);
+}
+
+.boardCard:hover .cardCategory {
+  transform: translateY(-2px) rotate(-1deg);
+}
+
+.cardImageWrap {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.75s var(--ease-out);
+}
+
+.boardCard:hover .cardImage {
+  transform: scale(1.08);
+}
+
+.cardShine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    125deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.22) 50%,
+    transparent 65%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.7s var(--ease-out);
+  pointer-events: none;
+}
+
+.boardCard:hover .cardShine {
+  transform: translateX(120%);
+}
+
+.cardCaption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0.875rem 1rem 1rem;
+  border-top: 1px solid rgba(15, 18, 16, 0.06);
+  background: linear-gradient(180deg, #fff 0%, rgba(243, 237, 227, 0.35) 100%);
+}
+
+.captionName {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  line-height: 1.3;
+}
+
+.captionPrice {
+  flex-shrink: 0;
+  font-family: var(--font-serif);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--gold-deep);
+}
+
+/* ── Scroll hint ─────────────────────────────────────────── */
+
+.railHint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 1.25rem 0 0;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mist);
+}
+
+.hintLine {
+  width: 2rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.4), transparent);
+}
+
+.autoDot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 0.35rem;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.2);
+  animation: autoPulse 2s ease-in-out infinite;
+  vertical-align: middle;
+}
+
+@keyframes autoPulse {
+  0%, 100% { opacity: 0.5; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+
+@media (min-width: 900px) {
+  .railNav {
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 576px) {
+  .boardCard {
+    width: min(78vw, 260px);
+  }
+
+  .railShell {
+    gap: 0;
+  }
+
+  .gallerySection {
+    padding-bottom: 0.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boardCard:hover .cardFrame,
+  .boardCard:hover .cardImage,
+  .boardCard:hover .cardShine,
+  .boardCard:hover .cardCategory,
+  .boardCard:hover .cardIndex,
+  .railNav:hover:not(:disabled) {
+    transform: none;
+  }
+
+  .cardShine {
+    display: none;
+  }
+
+  .railTrack {
+    scroll-behavior: auto;
+  }
+
+  .autoDot {
+    animation: none;
+  }
+}

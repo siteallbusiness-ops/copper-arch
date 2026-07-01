@@ -1,0 +1,51 @@
+.mark {
+  flex-shrink: 0;
+  display: block;
+  transition:
+    transform var(--transition-fast) var(--ease-spring),
+    filter var(--transition-fast);
+}
+
+.sizeXs {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.sizeSm {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.sizeMd {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.sizeLg {
+  width: 2.75rem;
+  height: 2.75rem;
+}
+
+.toneLight .markFrame,
+.toneLight .markPin,
+.toneLight .markPinHole {
+  stroke: var(--gold-soft);
+}
+
+.toneDark .markFrame,
+.toneDark .markPin,
+.toneDark .markPinHole {
+  stroke: var(--gold-deep);
+}
+
+.markFrame {
+  stroke-width: 1.25;
+}
+
+.markPin,
+.markPinHole {
+  fill: none;
+  stroke-width: 1.35;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}

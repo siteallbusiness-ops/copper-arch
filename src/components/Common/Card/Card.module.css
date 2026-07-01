@@ -1,0 +1,22 @@
+.card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 22px 22px 26px;
+  box-shadow: 0 14px 36px rgba(15, 18, 16, 0.06);
+  border: 1px solid var(--line-light);
+}
+
+.card h3 {
+  margin: 0 0 12px;
+  font-family: var(--font-serif);
+  color: var(--ink);
+}
+
+.card p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.cardSpacing {
+  margin-top: 20px;
+}

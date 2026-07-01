@@ -1,0 +1,88 @@
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9375rem 1.625rem;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-family: inherit;
+  text-decoration: none;
+  overflow: hidden;
+  transition:
+    transform var(--transition-fast) var(--ease-spring),
+    box-shadow var(--transition),
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.button:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.button:active {
+  transform: scale(0.98);
+}
+
+.primary {
+  background: var(--cta-gradient);
+  color: var(--cta-text);
+  border-color: transparent;
+  box-shadow: var(--cta-shadow);
+}
+
+.primary:hover {
+  text-decoration: none;
+  transform: translateY(-2px);
+  box-shadow: var(--cta-shadow-hover);
+  background: var(--cta-gradient-hover);
+}
+
+.ghost {
+  border-color: var(--line-dark);
+  color: var(--cream);
+  background: rgba(15, 31, 25, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.ghost:hover {
+  border-color: rgba(201, 168, 76, 0.45);
+  background: rgba(201, 168, 76, 0.1);
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+.nav {
+  border: 1px solid var(--gold);
+  color: var(--gold-soft) !important;
+  margin-left: 4px;
+  padding: 10px 14px;
+  font-size: 14px;
+}
+
+.nav:hover {
+  background: rgba(201, 168, 76, 0.18);
+  text-decoration: none;
+}
+
+.alignStart {
+  align-self: flex-start;
+  margin-top: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .primary:hover,
+  .ghost:hover {
+    transform: none;
+  }
+}

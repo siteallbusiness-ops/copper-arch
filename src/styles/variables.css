@@ -1,0 +1,140 @@
+:root {
+  /* ── Brand palette ───────────────────────────────────── */
+  --void: #060c0a;
+  --forest: #0f1f19;
+  --panel: #162a22;
+  --mist: #1d3830;
+  --cream: #f3ede3;
+  --cream-muted: #e8dfd2;
+  --ink: #0f1210;
+  --ink-soft: #4a4540;
+  --gold: #c9a84c;
+  --gold-soft: #dfc78a;
+  --gold-deep: #a8873a;
+  --gold-glow: rgba(201, 168, 76, 0.45);
+
+  /* ── Semantic aliases (swap theme here) ──────────────── */
+  --primary: var(--gold);
+  --primary-soft: var(--gold-soft);
+  --primary-deep: var(--gold-deep);
+  --secondary: var(--forest);
+  --accent: var(--mist);
+  --black: var(--void);
+  --white: var(--cream);
+  --text: var(--ink-soft);
+  --heading: var(--ink);
+  --surface: var(--panel);
+  --surface-elevated: var(--mist);
+
+  /* ── Lines & borders ─────────────────────────────────── */
+  --line-dark: rgba(201, 168, 76, 0.22);
+  --line-light: rgba(15, 18, 16, 0.12);
+  --line-subtle: rgba(243, 237, 227, 0.08);
+
+  /* ── Layout ──────────────────────────────────────────── */
+  --max: 1160px;
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-lg: 22px;
+  --radius-xl: 28px;
+  --radius-full: 999px;
+
+  /* ── Typography scale ────────────────────────────────── */
+  --text-display: clamp(2.5rem, 5.2vw, 3.85rem);
+  --text-h2: clamp(1.85rem, 3.2vw, 2.65rem);
+  --text-h3: clamp(1.35rem, 2.2vw, 1.75rem);
+  --text-lead: clamp(1.05rem, 1.6vw, 1.125rem);
+  --text-body: 1.0625rem;
+  --text-small: 0.875rem;
+  --text-micro: 0.6875rem;
+  --leading-tight: 1.12;
+  --leading-snug: 1.35;
+  --leading-relaxed: 1.7;
+  --tracking-wide: 0.14em;
+  --tracking-wider: 0.22em;
+
+  /* ── Section rhythm ──────────────────────────────────── */
+  --section-pad-y: clamp(5rem, 9vw, 7.5rem);
+  --section-pad-y-sm: clamp(3.5rem, 7vw, 5.5rem);
+  --section-gap: clamp(2.5rem, 5vw, 4rem);
+
+  /* ── Cards & surfaces ────────────────────────────────── */
+  --card-bg: rgba(255, 255, 255, 0.04);
+  --card-bg-light: #ffffff;
+  --card-border: rgba(201, 168, 76, 0.14);
+  --card-border-light: rgba(15, 18, 16, 0.08);
+  --card-radius: var(--radius-lg);
+  --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 1px 0 rgba(255, 255, 255, 0.04);
+  --card-shadow-hover: 0 20px 48px rgba(0, 0, 0, 0.2), 0 0 0 1px var(--card-border);
+  --card-shadow-dark: 0 16px 44px rgba(0, 0, 0, 0.38);
+  --card-shadow-dark-hover: 0 24px 56px rgba(0, 0, 0, 0.48), 0 0 0 1px rgba(201, 168, 76, 0.2);
+
+  /* ── Header theme ────────────────────────────────────── */
+  --header-height: 6.5rem;
+  --header-height-scrolled: 5.5rem;
+  --header-z: 100;
+  --header-capsule-radius: 999px;
+  --header-capsule-bg: rgba(6, 12, 10, 0.52);
+  --header-capsule-bg-inner: rgba(243, 237, 227, 0.88);
+  --header-capsule-border: rgba(201, 168, 76, 0.14);
+  --header-capsule-border-inner: rgba(15, 18, 16, 0.1);
+  --header-capsule-shadow: 0 4px 28px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(243, 237, 227, 0.04);
+  --header-capsule-shadow-inner: 0 10px 36px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  --header-thread: linear-gradient(90deg, transparent, var(--gold-soft) 20%, var(--gold) 50%, var(--gold-soft) 80%, transparent);
+  --header-track-bg: rgba(0, 0, 0, 0.32);
+  --header-track-border: rgba(243, 237, 227, 0.05);
+  --header-blur: 22px;
+  --header-text: rgba(243, 237, 227, 0.88);
+  --header-text-muted: rgba(243, 237, 227, 0.55);
+  --header-text-active: var(--gold-soft);
+
+  /* Inner pages (cream hero) header overrides */
+  --header-inner-bg-scrolled: rgba(243, 237, 227, 0.82);
+  --header-inner-text: var(--ink);
+  --header-inner-text-muted: var(--ink-soft);
+
+  /* ── Header CTA ──────────────────────────────────────── */
+  --cta-gradient: linear-gradient(135deg, var(--gold-soft) 0%, var(--gold) 48%, var(--gold-deep) 100%);
+  --cta-gradient-hover: linear-gradient(135deg, #ead9a0 0%, #d4b456 48%, var(--gold-deep) 100%);
+  --cta-text: var(--void);
+  --cta-shadow: 0 4px 20px rgba(201, 168, 76, 0.35);
+  --cta-shadow-hover: 0 8px 28px rgba(201, 168, 76, 0.5);
+
+  /* ── Footer theme ────────────────────────────────────── */
+  --footer-bg: linear-gradient(180deg, var(--forest) 0%, var(--void) 100%);
+  --footer-accent-line: linear-gradient(90deg, transparent, var(--gold) 30%, var(--gold-soft) 70%, transparent);
+  --footer-text: rgba(243, 237, 227, 0.72);
+  --footer-text-muted: rgba(243, 237, 227, 0.52);
+  --footer-heading: var(--gold-soft);
+  --footer-link: rgba(243, 237, 227, 0.82);
+  --footer-link-hover: var(--cream);
+  --footer-divider: var(--line-subtle);
+  --footer-pad-y: clamp(3.5rem, 6vw, 5rem);
+  --footer-pad-bottom: clamp(1.5rem, 3vw, 2rem);
+  --footer-social-bg: rgba(243, 237, 227, 0.06);
+  --footer-social-border: rgba(201, 168, 76, 0.2);
+  --footer-social-hover-bg: rgba(201, 168, 76, 0.14);
+
+  /* ── Motion ──────────────────────────────────────────── */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+  --transition: 0.35s var(--ease-out);
+  --transition-fast: 0.2s var(--ease-out);
+  --transition-slow: 0.55s var(--ease-out);
+
+  /* ── Shadows ─────────────────────────────────────────── */
+  --shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  --shadow-soft: 0 4px 24px rgba(0, 0, 0, 0.18);
+  --shadow-elevated: 0 20px 48px rgba(0, 0, 0, 0.42);
+
+  /* ── Focus ───────────────────────────────────────────── */
+  --focus-ring: 2px solid var(--gold);
+  --focus-offset: 3px;
+}
+
+@media (max-width: 576px) {
+  :root {
+    --header-height: 5.25rem;
+    --header-height-scrolled: 4.75rem;
+  }
+}

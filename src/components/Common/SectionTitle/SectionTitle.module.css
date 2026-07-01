@@ -1,0 +1,61 @@
+.sectionTitle {
+  margin-bottom: 28px;
+}
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0 0 14px;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.85rem, 3vw, 2.4rem);
+  color: var(--cream);
+  margin: 0 0 10px;
+}
+
+.description {
+  max-width: 52ch;
+  margin-bottom: 28px;
+  color: rgba(243, 237, 227, 0.72);
+}
+
+.default .title {
+  color: var(--cream);
+}
+
+.cream .eyebrow {
+  color: var(--mist);
+  letter-spacing: 0.22em;
+}
+
+.cream .title {
+  color: var(--ink);
+}
+
+.dark .title {
+  color: var(--cream);
+}
+
+.light .title {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: var(--ink);
+  margin: 0 0 8px;
+}
+
+.light .eyebrow {
+  color: var(--mist);
+}
+
+.kicker {
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0 0 28px;
+}

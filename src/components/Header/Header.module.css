@@ -1,0 +1,775 @@
+/* ═══════════════════════════════════════════════════════════
+   Cake Dine — Floating Salon Capsule Header
+   Unique layout: inset glass capsule + segmented nav track
+   + ticket-stub CTA. Not edge-to-edge — boutique feel.
+   ═══════════════════════════════════════════════════════════ */
+
+.siteHeader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--header-z);
+  padding: clamp(0.75rem, 2vw, 1.125rem) 0;
+  pointer-events: none;
+  transition: padding var(--transition);
+}
+
+.isScrolled {
+  padding: clamp(0.5rem, 1.5vw, 0.75rem) 0;
+}
+
+.headerGlow {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(90%, 52rem);
+  height: 5rem;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse 80% 100% at 50% 0%, rgba(201, 168, 76, 0.07), transparent 70%);
+  opacity: 0;
+  transition: opacity var(--transition-slow);
+  pointer-events: none;
+}
+
+.isScrolled .headerGlow {
+  opacity: 1;
+}
+
+.headerWrap {
+  pointer-events: auto;
+}
+
+/* ── Floating capsule bar ─────────────────────────────────── */
+
+.capsule {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(0.5rem, 1.5vw, 1rem);
+  padding: 0.4rem 0.4rem 0.4rem clamp(0.875rem, 2vw, 1.25rem);
+  border-radius: var(--header-capsule-radius);
+  background: var(--header-capsule-bg);
+  border: 1px solid var(--header-capsule-border);
+  backdrop-filter: blur(var(--header-blur));
+  -webkit-backdrop-filter: blur(var(--header-blur));
+  box-shadow: var(--header-capsule-shadow);
+  transition:
+    background var(--transition-slow),
+    border-color var(--transition),
+    box-shadow var(--transition),
+    padding var(--transition),
+    gap var(--transition);
+}
+
+.capsuleThread {
+  position: absolute;
+  top: 0;
+  left: 8%;
+  right: 8%;
+  height: 1px;
+  background: var(--header-thread);
+  border-radius: var(--radius-full);
+  opacity: 0.8;
+}
+
+.isScrolled .capsule {
+  padding: 0.3rem 0.3rem 0.3rem clamp(0.75rem, 1.8vw, 1.125rem);
+  background: var(--header-capsule-bg-inner);
+  border-color: var(--header-capsule-border-inner);
+  box-shadow: var(--header-capsule-shadow-inner);
+}
+
+.menuOpen .capsule {
+  background: rgba(6, 12, 10, 0.94);
+  border-color: var(--line-dark);
+}
+
+.menuOpen .logoWord {
+  color: var(--cream);
+}
+
+.menuOpen .logoSub {
+  color: var(--gold-soft);
+  opacity: 0.75;
+}
+
+.menuOpen .navLink {
+  color: var(--header-text-muted);
+}
+
+.menuOpen .navLink:hover {
+  color: var(--cream);
+  background: rgba(243, 237, 227, 0.06);
+}
+
+.menuOpen .menuTriggerLines span {
+  background: var(--cream);
+}
+
+/* ── Logo — typographic wordmark ─────────────────────────── */
+
+.logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.55rem;
+  text-decoration: none;
+  flex-shrink: 0;
+  min-width: 0;
+  max-width: 100%;
+  justify-self: start;
+  grid-column: 1;
+  z-index: 1;
+}
+
+.logo:hover {
+  text-decoration: none;
+}
+
+.logo:hover .logoMark {
+  transform: scale(1.04);
+  filter: drop-shadow(0 0 10px rgba(201, 168, 76, 0.22));
+}
+
+.isScrolled .logo:hover .logoMark {
+  filter: drop-shadow(0 0 8px rgba(168, 135, 58, 0.35));
+}
+
+.menuOpen .logo:hover .logoMark {
+  filter: drop-shadow(0 0 10px rgba(201, 168, 76, 0.22));
+}
+
+.logoText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.logoMark {
+  flex-shrink: 0;
+}
+
+.logoWordmark {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.logoWord {
+  font-family: var(--font-serif);
+  font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+  font-weight: 600;
+  font-style: italic;
+  letter-spacing: 0.01em;
+  color: var(--cream);
+  line-height: 1;
+  white-space: nowrap;
+  transition: color var(--transition-fast);
+}
+
+.logoJewel {
+  display: block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 10px var(--gold-glow);
+  flex-shrink: 0;
+  transition: transform var(--transition-fast) var(--ease-spring);
+}
+
+.logo:hover .logoJewel {
+  transform: scale(1.35);
+}
+
+.logoSub {
+  font-size: 0.5rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-soft);
+  opacity: 0.75;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 9.5rem;
+  transition: color var(--transition-fast), opacity var(--transition-fast);
+}
+
+.isScrolled .logoSub {
+  display: none;
+}
+
+.isScrolled .logoWord {
+  color: var(--ink);
+}
+
+.isScrolled .logoJewel {
+  background: var(--gold-deep);
+  box-shadow: 0 0 8px rgba(168, 135, 58, 0.4);
+}
+
+/* ── Segmented nav track ─────────────────────────────────── */
+
+.desktopNav {
+  display: none;
+  justify-self: center;
+  grid-column: 2;
+  min-width: 0;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  justify-self: end;
+  grid-column: 3;
+}
+
+.navTrack {
+  padding: 3px;
+  border-radius: var(--radius-full);
+  background: var(--header-track-bg);
+  border: 1px solid var(--header-track-border);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navLink {
+  position: relative;
+  display: block;
+  padding: 0.5rem clamp(0.875rem, 1.8vw, 1.25rem);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--header-text-muted);
+  text-decoration: none;
+  border-radius: var(--radius-full);
+  transition:
+    color var(--transition-fast),
+    background var(--transition-fast),
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.navLink:hover {
+  color: var(--cream);
+  text-decoration: none;
+  background: rgba(243, 237, 227, 0.06);
+}
+
+.navLink:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.navLinkActive {
+  color: var(--void);
+  background: var(--gold);
+  box-shadow:
+    0 2px 10px rgba(201, 168, 76, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.navLinkActive:hover {
+  color: var(--void);
+  background: var(--gold-soft);
+}
+
+.navLinkLabel {
+  position: relative;
+  z-index: 1;
+}
+
+.isScrolled .navLink {
+  color: var(--ink-soft);
+}
+
+.isScrolled .navLink:hover {
+  color: var(--ink);
+  background: rgba(15, 18, 16, 0.06);
+}
+
+.isScrolled .navLinkActive {
+  color: var(--void);
+  background: var(--gold);
+}
+
+.isScrolled .navTrack {
+  background: rgba(15, 18, 16, 0.1);
+  border-color: rgba(15, 18, 16, 0.08);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* ── Ticket-stub CTA ─────────────────────────────────────── */
+
+.ctaTicket {
+  position: relative;
+  display: none;
+  align-items: center;
+  gap: 0;
+  padding: 0.5rem 1.125rem 0.5rem 1.375rem;
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-family: inherit;
+  color: var(--void);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(160deg, #ead9a0 0%, var(--gold) 45%, var(--gold-deep) 100%);
+  border-radius: 6px 999px 999px 6px;
+  overflow: hidden;
+  box-shadow:
+    0 3px 14px rgba(201, 168, 76, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  transition:
+    transform var(--transition-fast) var(--ease-spring),
+    box-shadow var(--transition);
+}
+
+.ctaTicket:hover {
+  text-decoration: none;
+  transform: translateY(-2px) rotate(-0.5deg);
+  box-shadow:
+    0 6px 22px rgba(201, 168, 76, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.ctaTicket:active {
+  transform: translateY(0) rotate(0);
+}
+
+.ctaTicket:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.ctaPerforation {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 10px;
+  background:
+    radial-gradient(circle at 0 4px, var(--header-capsule-bg) 2px, transparent 2.5px) 0 0 / 10px 8px repeat-y;
+  opacity: 0.9;
+}
+
+.isScrolled .ctaPerforation {
+  background:
+    radial-gradient(circle at 0 4px, #ebe4d8 2px, transparent 2.5px) 0 0 / 10px 8px repeat-y;
+}
+
+.ctaText {
+  position: relative;
+  z-index: 1;
+}
+
+.ctaShine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.35) 50%, transparent 60%);
+  transform: translateX(-120%);
+  transition: transform 0.6s var(--ease-out);
+  pointer-events: none;
+}
+
+.ctaTicket:hover .ctaShine {
+  transform: translateX(120%);
+}
+
+/* ── Mobile menu trigger — ring + two lines ──────────────── */
+
+.menuTrigger {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.625rem;
+  height: 2.625rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--header-track-bg);
+  cursor: pointer;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.menuTrigger:hover {
+  background: rgba(201, 168, 76, 0.15);
+}
+
+.menuTrigger:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.menuTriggerRing {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid var(--line-dark);
+  transition: border-color var(--transition-fast), transform var(--transition);
+}
+
+.menuTrigger:hover .menuTriggerRing {
+  border-color: rgba(201, 168, 76, 0.45);
+}
+
+.menuTriggerOpen .menuTriggerRing {
+  border-color: var(--gold);
+  transform: rotate(90deg);
+}
+
+.menuTriggerLines {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  width: 1rem;
+  height: 1rem;
+}
+
+.menuTriggerLines span {
+  display: block;
+  height: 1.5px;
+  background: var(--cream);
+  border-radius: var(--radius-full);
+  transition: transform var(--transition) var(--ease-spring), opacity var(--transition-fast);
+  transform-origin: center;
+}
+
+.isScrolled .menuTriggerLines span {
+  background: var(--ink);
+}
+
+.menuTriggerLines span:nth-child(1) {
+  width: 100%;
+}
+
+.menuTriggerLines span:nth-child(2) {
+  width: 65%;
+  align-self: flex-end;
+}
+
+.menuTriggerOpen .menuTriggerLines span:nth-child(1) {
+  transform: translateY(3.75px) rotate(45deg);
+  width: 100%;
+  align-self: center;
+}
+
+.menuTriggerOpen .menuTriggerLines span:nth-child(2) {
+  transform: translateY(-3.75px) rotate(-45deg);
+  width: 100%;
+  align-self: center;
+}
+
+/* ── Mobile editorial curtain ────────────────────────────── */
+
+.mobileCurtain {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--header-z) - 1);
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.mobileCurtainOpen {
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.mobileBackdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(6, 12, 10, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  opacity: 0;
+  transition: opacity var(--transition-slow);
+}
+
+.mobileCurtainOpen .mobileBackdrop {
+  opacity: 1;
+}
+
+.mobileNav {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: calc(var(--header-height) + 1rem) clamp(1.5rem, 6vw, 3rem) 2.5rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobileNavArch {
+  position: absolute;
+  top: calc(var(--header-height) - 0.5rem);
+  left: 50%;
+  width: min(18rem, 60vw);
+  height: 3rem;
+  transform: translateX(-50%);
+  border: 1px solid var(--line-dark);
+  border-bottom: none;
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.mobileNavKicker {
+  margin: 0 0 1.5rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity var(--transition) 0.1s, transform var(--transition) 0.1s;
+}
+
+.mobileCurtainOpen .mobileNavKicker {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mobileNavList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.mobileNavItem {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity var(--transition) var(--ease-out),
+    transform var(--transition) var(--ease-out);
+  transition-delay: calc(var(--item-index, 0) * 70ms + 120ms);
+}
+
+.mobileCurtainOpen .mobileNavItem {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mobileNavLink {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.125rem 0;
+  border-bottom: 1px solid var(--line-subtle);
+  text-decoration: none;
+  color: var(--cream);
+  transition: padding-left var(--transition-fast), color var(--transition-fast);
+}
+
+.mobileNavLink:hover {
+  text-decoration: none;
+  color: var(--gold-soft);
+  padding-left: 0.5rem;
+}
+
+.mobileNavLink:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+.mobileNavIndex {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  opacity: 0.7;
+  font-variant-numeric: tabular-nums;
+}
+
+.mobileNavLabel {
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 6vw, 2.5rem);
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.1;
+}
+
+.mobileNavArrow {
+  font-size: 1.25rem;
+  color: var(--gold-soft);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.mobileNavLink:hover .mobileNavArrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.mobileNavLinkActive .mobileNavLabel {
+  color: var(--gold-soft);
+}
+
+.mobileCtaTicket {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: 1.5rem;
+  width: fit-content;
+  padding: 0.875rem 1.5rem 0.875rem 1.75rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-family: inherit;
+  color: var(--void);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(160deg, #ead9a0 0%, var(--gold) 45%, var(--gold-deep) 100%);
+  border-radius: 6px 999px 999px 6px;
+  box-shadow: 0 3px 14px rgba(201, 168, 76, 0.45);
+  transition: transform var(--transition-fast) var(--ease-spring);
+}
+
+.mobileCtaTicket:hover {
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+.mobileNavFooter {
+  margin: 2rem 0 0;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--header-text-muted);
+  opacity: 0;
+  transition: opacity var(--transition) 0.35s;
+}
+
+.mobileCurtainOpen .mobileNavFooter {
+  opacity: 1;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+
+@media (min-width: 992px) {
+  .desktopNav {
+    display: block;
+  }
+
+  .ctaTicket {
+    display: inline-flex;
+  }
+
+  .menuTrigger {
+    display: none;
+  }
+
+  .mobileCurtain {
+    display: none;
+  }
+}
+
+@media (max-width: 991px) {
+  .capsule {
+    grid-template-columns: 1fr auto;
+    gap: 0.75rem;
+    padding: 0.4rem 0.4rem 0.4rem 1rem;
+  }
+
+  .logo {
+    grid-column: 1;
+  }
+
+  .desktopNav {
+    display: none;
+    grid-column: auto;
+  }
+
+  .headerActions {
+    grid-column: 2;
+  }
+
+  .logoSub {
+    display: none;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1180px) {
+  .logoSub {
+    display: none;
+  }
+
+  .navLink {
+    padding: 0.45rem 0.75rem;
+    font-size: 0.6875rem;
+    letter-spacing: 0.1em;
+  }
+
+  .ctaTicket {
+    padding: 0.45rem 0.875rem 0.45rem 1.125rem;
+    font-size: 0.625rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .capsule {
+    padding: 0.35rem 0.35rem 0.35rem 0.875rem;
+    border-radius: 999px;
+  }
+
+  .logoWord {
+    font-size: 1.1rem;
+  }
+
+  .ctaTicket {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .siteHeader,
+  .capsule,
+  .logoJewel,
+  .navLink,
+  .ctaTicket,
+  .ctaShine,
+  .menuTriggerRing,
+  .menuTriggerLines span,
+  .mobileBackdrop,
+  .mobileNavItem,
+  .mobileNavKicker,
+  .mobileNavFooter,
+  .mobileNavArrow {
+    transition: none;
+  }
+
+  .mobileNavItem,
+  .mobileNavKicker,
+  .mobileNavFooter {
+    opacity: 1;
+    transform: none;
+  }
+}

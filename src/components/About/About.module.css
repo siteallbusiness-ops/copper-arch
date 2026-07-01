@@ -1,0 +1,240 @@
+/* ── Section shell ───────────────────────────────────────── */
+
+.bandCream {
+  position: relative;
+  background: var(--cream);
+  color: var(--ink-soft);
+  padding: clamp(4rem, 8vw, 6.5rem) 0;
+  overflow: hidden;
+}
+
+.sectionFade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4rem;
+  background: linear-gradient(180deg, var(--void) 0%, transparent 100%);
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.sectionTexture {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 55% 45% at 0% 100%, rgba(201, 168, 76, 0.07), transparent 55%),
+    radial-gradient(ellipse 45% 35% at 100% 0%, rgba(29, 56, 48, 0.05), transparent 50%);
+  pointer-events: none;
+}
+
+/* ── Grid layout ─────────────────────────────────────────── */
+
+.editorialGrid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: start;
+}
+
+.primaryColumn,
+.secondaryPanel {
+  min-width: 0;
+}
+
+.secondaryPanel {
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  border-radius: var(--radius-xl);
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(15, 18, 16, 0.06);
+  box-shadow:
+    0 4px 24px rgba(15, 18, 16, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* ── Section labels ──────────────────────────────────────── */
+
+.sectionLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin-bottom: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+
+.labelDot {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.2);
+}
+
+.eyebrowMist {
+  margin: 0;
+  font-size: clamp(0.625rem, 1.3vw, 0.6875rem);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mist);
+  line-height: 1.3;
+}
+
+/* ── Pull quote ──────────────────────────────────────────── */
+
+.pullquote {
+  margin: 0 0 clamp(1.5rem, 3vw, 2rem);
+  padding: 0 0 0 clamp(1rem, 2vw, 1.5rem);
+  border: none;
+  border-left: 3px solid var(--gold);
+}
+
+.pullquoteText {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 2.8vw, 2.125rem);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.32;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  max-width: 22em;
+  text-wrap: balance;
+}
+
+/* ── Body copy ───────────────────────────────────────────── */
+
+.prose {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.paragraph {
+  margin: 0 0 1rem;
+  font-size: clamp(1rem, 1.4vw, 1.0625rem);
+  line-height: 1.72;
+  color: var(--ink-soft);
+  max-width: 50ch;
+}
+
+.paragraph:last-child {
+  margin-bottom: 0;
+}
+
+.secondaryPanel .paragraph {
+  max-width: none;
+}
+
+/* ── House rule callout ──────────────────────────────────── */
+
+.stamp {
+  display: flex;
+  gap: 0;
+  margin-top: clamp(1.5rem, 3vw, 2rem);
+  max-width: 28rem;
+  border-radius: var(--radius-lg);
+  background: var(--white);
+  border: 1px solid rgba(15, 18, 16, 0.07);
+  box-shadow: 0 8px 28px rgba(15, 18, 16, 0.06);
+  overflow: hidden;
+  transition: box-shadow var(--transition), transform var(--transition-fast);
+}
+
+.stamp:hover {
+  box-shadow: 0 12px 36px rgba(15, 18, 16, 0.09);
+  transform: translateY(-2px);
+}
+
+.stampAccent {
+  flex-shrink: 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--gold-soft), var(--gold-deep));
+}
+
+.stampBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.125rem 1.25rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.stampBody strong {
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.stampBody span {
+  color: var(--ink-soft);
+}
+
+/* ── Tablet ──────────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .editorialGrid {
+    grid-template-columns: 1fr;
+    gap: clamp(2rem, 5vw, 2.75rem);
+  }
+
+  .secondaryPanel {
+    padding: clamp(1.25rem, 4vw, 1.75rem);
+  }
+
+  .pullquoteText {
+    max-width: none;
+  }
+
+  .paragraph {
+    max-width: none;
+  }
+
+  .stamp {
+    max-width: none;
+  }
+}
+
+/* ── Mobile ──────────────────────────────────────────────── */
+
+@media (max-width: 576px) {
+  .bandCream {
+    padding: clamp(3rem, 8vw, 4rem) 0;
+  }
+
+  .sectionFade {
+    height: 2.5rem;
+  }
+
+  .pullquote {
+    padding-left: 1rem;
+    border-left-width: 2px;
+  }
+
+  .pullquoteText {
+    font-size: clamp(1.35rem, 6vw, 1.65rem);
+    line-height: 1.35;
+  }
+
+  .eyebrowMist {
+    letter-spacing: 0.16em;
+  }
+}
+
+@media (max-width: 390px) {
+  .stampBody {
+    padding: 1rem;
+  }
+}
+
+/* ── Reduced motion ──────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .stamp:hover {
+    transform: none;
+  }
+}

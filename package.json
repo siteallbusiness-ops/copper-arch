@@ -1,0 +1,20 @@
+{
+  "name": "copper-arch",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "images:webp": "node scripts/convert-images-to-webp.mjs --remove-originals"
+  },
+  "dependencies": {
+    "next": "^15.3.3",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "sharp": "^0.33.5"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
