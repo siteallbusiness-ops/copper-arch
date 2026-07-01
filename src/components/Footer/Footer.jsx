@@ -5,13 +5,11 @@ import {
   SITE_TAGLINE,
   SITE_URL,
   SITE_PHONE,
-  FOOTER_SOCIAL,
   FOOTER_LEGAL,
 } from '@/constants/site';
 import HoursModalTrigger from '@/components/Common/HoursModalTrigger/HoursModalTrigger';
 import Container from '@/components/Common/Container/Container';
 import LogoMark from '@/components/Common/LogoMark/LogoMark';
-import FooterSocial from './FooterSocial';
 import styles from './Footer.module.css';
 
 const CURRENT_YEAR = new Date().getFullYear();
@@ -69,7 +67,6 @@ export default function Footer({ variant = 'home' }) {
             </Link>
             <p className={styles.brandTagline}>{SITE_TAGLINE}</p>
             <p className={styles.footCopy}>{descriptions[variant]}</p>
-            <FooterSocial links={FOOTER_SOCIAL} />
           </div>
 
           {variant === 'home' && (

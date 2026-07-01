@@ -14,12 +14,6 @@ export const NAV_LINKS = [
   { label: 'Hours', ariaLabel: 'Opening hours', isCta: true, opensHoursModal: true },
 ];
 
-export const FOOTER_SOCIAL = [
-  { href: '#', label: 'Instagram', icon: 'instagram' },
-  { href: '#', label: 'Facebook', icon: 'facebook' },
-  { href: `mailto:${SITE_EMAIL}`, label: 'Email', icon: 'email' },
-];
-
 export const FOOTER_LEGAL = [
   { href: '#', label: 'Privacy Policy' },
   { href: '#', label: 'Terms of Use' },
